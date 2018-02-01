@@ -1,0 +1,26 @@
+{
+  "name": "BamazonApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bamazonCustomer.js",
+  "dependencies": {
+    "columnify": "^1.5.4",
+    "inquirer": "^5.0.1",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielladt/BamazonApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielladt/BamazonApp/issues"
+  },
+  "homepage": "https://github.com/danielladt/BamazonApp#readme"
+}
