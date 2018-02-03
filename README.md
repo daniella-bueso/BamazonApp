@@ -19,7 +19,7 @@ The Bamazon Customer Portal allows users to view and edit the inventory of the s
 3. Add to inventory
 4. Add a new product
 
-Options 1 & 2
+#### Options 1 & 2
 
 The first option allows the user to see the list of products that are currently for sale, the price of the product and how much stock is left for that product.
 
@@ -29,7 +29,7 @@ The second option allows the user to see a list of all inventory items that have
 
 ![ManagerView](images/options1&2.png)
 
-Options 3 & 4
+#### Options 3 & 4
 
 The third option allows the user to update the inventory for a specific product. A prompt asks what the id is for the product the user wants to update. A second prompt asks how many items the user wishes to increase the quantity by.
 
