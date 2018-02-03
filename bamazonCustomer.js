@@ -1,14 +1,14 @@
 //Bring in my sql + inquirer packages
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-var columnify = require("columnify");
+var Table = require('cli-table');
 
 //Create a connection to mysql database
 var connection = mysql.createConnection({
 	host: 'localhost',
 	port: 3306,
 	user: 'root',
-	password: "",
+	password: "", //enter your own mysql password
 	database: "bamazon"
 });
 //Execute connection that displays all items for sale
@@ -21,13 +21,23 @@ connection.connect(function(err){
 function displayAll() {
     connection.query("SELECT id, product_name, price FROM products", function(err, res){
         if (err) throw err;
-        console.log('-------------------------------------------');
-        console.log('              WELCOME TO BAMAZON           ');
-        console.log('-------------------------------------------');
-        console.log(columnify(res));
-        console.log('-------------------------------------------');
+        console.log("");
+        console.log('                       WELCOME TO BAMAZON           ');
+        var table = new Table({
+            head: ['Id', 'Product Description', 'Price'],
+            colWidths: [5, 50, 7],
+            colAligns: ['center', 'left', 'right'],
+             style: {
+              head: ['cyan'],
+              compact: true
+            }
+        });
+        for (var i = 0; i < res.length; i++) {
+            table.push([res[i].id, res[i].product_name, res[i].price]);
+        }
+        console.log(table.toString());
         productId();
-    });
+    }); //end connection to products
 };
 
 //Function to prompt user to enter id of product to buy
@@ -60,18 +70,30 @@ function productId() {
                     var quantity = answer.productQuantity;
                     //If quantity is less than stock quantity display error message
                     if (quantity > res[0].stock_quantity) {
-                        console.log('Cannot proceed, we only have ' + res[0].stock_quantity + ' items of the product selected');
-                    productId();
+                        console.log("Cannot proceed, we only have " + res[0].stock_quantity + " items of the product selected");
+                        productId();
                     }
                     //Else display the name and price of product chosen
                     else {
-                        console.log(res[0].product_name + ' purchased.')
+                        console.log("");
+                        console.log(res[0].product_name + ' purchased.');
+                        console.log(quantity + ' qty @ $' + res[0].price);
+
+                        //Sale total for product user chose
+                        var saleTotal = quantity * res[0].price;
+                        console.log("Sale Total: $"  + saleTotal);
+                        var newQuantity = res[0].stock_quantity - quantity;
+                        connection.query("UPDATE products SET stock_quantity = "+ newQuantity + " WHERE id = " + res[0].id , function (err, resUpdate){
+                            if (err) throw err;
+                            console.log("");
+                            console.log("Your Order has been Processed");
+                            console.log("Thank you for Shopping with us!");
+                        });
+                        //Ends connection
                         connection.end();
                     }//end of else for second question
                 });
             };//end of else for first question
         });//end of query
     });
-};
-
-//
+};//end of inquirer
