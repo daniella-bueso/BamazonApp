@@ -173,6 +173,11 @@ function newProduct() {
                 console.log("");
                 console.log("You successfully added new item!")
                 console.log("");
+                console.log("Product Name: " + answer.name);
+                console.log("Department Name: " + answer.department);
+                console.log("Price Name: " + answer.price);
+                console.log("Stock Quantity: " + answer.stockQuantity);
+                console.log("");
                 displayMenu();
         }); //end of query
     })
