@@ -2,22 +2,37 @@
 
 An interactive shopping node app where MySQL and Node.JS are used to allow users to purchase items as a customer,and to view, track and update the product inventory as a manager.
 
-### Customer Portal
+### MySQL Database Setup
+In order to run the application, you must have the MySQL database set up on your machine. If you don't, visit the [MySQL installation page](https://dev.mysql.com/doc/refman/5.6/en/installing.html) to install the version you need for your operating system. Once you have MySQL installed, create the *Bamazon* database with the SQL code found in [schema.sql](https://github.com/danielladt/BamazonApp/blob/master/schema.sql)and then add *products* to database using [seeds.sql](https://github.com/danielladt/BamazonApp/blob/master/seeds.sql). Run this code inside your MySQL workbench, then you may proceed with running the Bamason customer and manager interfaces. 
+
+### Customer Interface
 
 The Bamazon Customer Portal allows users to view the current items available for purchase. The user will be prompted to enter the item id# and how many items they wish to purchase. If the item is in stock, the order will be completed and the user will see the total amount of their purchase.
+
+To run the customer interface please follow the steps below in your terminal or git bash:
+    git clone https://github.com/danielladt/BamazonApp.git
+    cd bamazonApp
+    npm install
+    node bamazonCustomer.js
 
 ![CustomerView](images/customer.png)
 
 ![CustomerView2](images/customer2.png)
 
-### Manager Portal
+### Manager Interface
 
 The Bamazon Customer Portal allows users to view and edit the inventory of the store. The user will be prompted to choose from the following options:
 
-1. View products for sale
-2. View low inventory
-3. Add to inventory
-4. Add a new product
+    1. View products for sale
+    2. View low inventory
+    3. Add to inventory
+    4. Add a new product
+
+Running the manager interface is similar to customer interface. Please follow the steps below in your terminal or git bash:
+    git clone https://github.com/danielladt/BamazonApp.git
+    cd bamazonApp
+    npm install
+    node bamazonManager.js    
 
 #### Options 1 & 2
 
